@@ -1,10 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('./services/passport');
 const { mongoURI } = require('./config/keys');
+require('./models/User');
+require('./services/passport');
+
 //const authRoutes = require('./routes/authRoutes');
 //
-mongoose.connect(mongoURI);
+mongoose.connect(mongoURI, error => {
+	console.log('connection error -->' + error);
+});
 
 const app = express();
 //authRoutes(app);
